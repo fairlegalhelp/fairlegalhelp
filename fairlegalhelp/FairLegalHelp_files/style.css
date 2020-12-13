@@ -1,0 +1,65 @@
+#formReg {
+    max-width: 380px;
+    height: 360px;
+    padding: 0;
+    margin: 0 auto 1rem;
+    background: #69999F;
+    background: linear-gradient(125deg, #69999f 0%, #002648 100%);
+    position: relative;
+    border-radius: 0 0 4px 4px;
+    box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+    
+.formPart h2 {
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+}
+.formPart p {
+    color: white;
+    text-align: center;
+}
+.formPart p a {
+    color: white;
+}
+.formPart h2 + p {
+    margin: 1rem 0;    
+}
+
+.formPart button.buttonY {
+    border: 2px solid white;    
+}
+.formPart button.buttonN {
+    border: 2px solid white;
+}
+
+.formPart button.buttonFinal {
+    border: 0;
+}
+
+.formPart form label {
+    color: #fff;
+}
+
+.formPart input#name {
+    width: 100%;
+    display: block;
+    margin-bottom: 0.5rem;
+    min-height: 2.5rem;
+    border-radius: 3px;
+    text-align: left;
+    border:0;
+    padding: 0 .75em;
+}
+
+.formPart input#email {
+    width: 100%;
+    display: block;
+    margin-bottom: 0rem;
+    min-height: 2.5rem;
+    border-radius: 3px;
+    text-align: left;
+    border:0;
+    padding: 0 .75em;
+}

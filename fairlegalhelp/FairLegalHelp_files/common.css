@@ -1,0 +1,503 @@
+@import url('https://fonts.googleapis.com/css?family=Muli:400,400i,700,900&display=swap&subset=latin-ext');
+
+*, ::before, ::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 1rem;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0 1rem;
+    background-color: #f3f3f3;
+    color: #444;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.2;
+    margin: 0 auto 0.5em;
+}
+p.lead {
+    font-size: 1.25rem;
+}
+
+a {
+    text-decoration: underline;
+    color: #4795dd;
+}
+a:hover {
+    text-decoration: none;
+    color: #2868a5;
+}
+
+b, strong {
+    font-weight: 700;
+}
+
+i {
+    font-style: italic;
+}
+
+h1, h2, h3, h4 {
+    line-height: 1.1;   
+    font-family: 'Muli', sans-serif;
+    font-weight: 900;
+}
+
+.button {
+    font-family: 'Muli', sans-serif;
+    line-height: 1;
+    font-weight: 700;
+    display: inline-flex;
+    border-radius: 4px;
+    border: 0;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin: 0 0 0.5em;
+}
+h2 {
+    font-size: 2rem;
+    margin: 0 0 0.6em;
+}
+h3 {
+    font-size: 1.5rem;
+    margin: 0 0 0.65em;
+}
+h4 {
+    font-size: 1.25rem;
+    margin: 0 0 0.75em;
+}
+
+.wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;  
+    padding: 1rem 0 0;
+    border-top: 5px solid #69999F;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+}
+
+@media screen and (min-width:360px) {
+    .wrapper {
+        padding: 1rem 1rem;
+    }
+}
+
+.advertorial {
+    text-align: right;
+    margin-left: auto;
+    font-size: 0.7rem;
+    color: #999999;
+}
+
+.bulletPoints ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Muli', sans-serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    margin: 0;
+    padding: 0;
+}
+.bulletPoints ul li {
+    margin: 0.5rem 1rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+.bulletPoints ul li::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 10px;
+    height: 20px;
+    border-bottom: 5px #90da3c solid;
+    border-right: 5px #90da3c solid;
+    border-radius: 0 0 3px 0;
+    left:0;
+    top:50%;
+    margin-top: -12px;
+    transform: rotate(45deg);
+}
+
+.headerBar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    background: #f3f3f3;
+    padding: 0.5rem 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.headerBar img {
+    max-width: 2rem;
+}
+
+.headerBar h1 {
+    margin: 0 0 0 1rem;    
+    color: #fd8d29;
+    font-size: 1.4rem;
+}
+
+.headerImgs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+.headerImgs a {
+    max-width: calc(30% - 2rem);
+    margin: 1rem;
+    border-radius: 10px;
+    overflow: hidden;    
+}
+.headerImgs img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+footer {
+    font-size: 0.8rem; 
+    line-height: 1.1; 
+    color: #717171; 
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto 0;
+    padding: 2rem 1rem;
+}
+
+
+/* COMMON FORM CSS */
+
+#formProgress {
+    height: 10px;
+    width: 100%;
+    background: #dadada;
+    max-width: 380px;
+    margin: 1rem auto 0;
+}
+
+#formProgress .progressBar {
+    content: "";
+    display: block;
+    height: 100%;    
+    width: 0;
+    background: #90da3c;
+    transition: 250ms width ease-in-out;
+    position: relative;
+    z-index: 100;
+}
+
+#formProgress .progressBar .progressNumber {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background: white;
+    padding: .25rem .5rem;
+    border-radius: 5px;
+    border: 2px solid #8fda3c;
+    width: 4em;
+    text-align: center;
+}
+
+.formLoader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    margin: 0;    
+    transition: 150ms opacity linear;
+    z-index: 150;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.formLoader svg {
+    display: block;
+    width: 90px;
+    height: auto;
+}
+
+.formLoader svg .check {
+    fill:none;
+    stroke:#90da3c;
+    stroke-linejoin:round;
+    stroke-width:32px;
+    stroke-dashoffset: 260px;
+    stroke-dasharray: 260px;
+    transition: 150ms stroke-dashoffset ease-in-out;
+}
+.formLoader.checked svg .check {
+    stroke-dashoffset: 50px;
+}
+
+.formPart {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.75rem;
+    border: 0;
+    margin: 0;    
+    transition: 150ms opacity linear;
+}
+.formPart form {
+    width: 100%;
+}
+.formPart form label {
+    font-size: 1.15rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+    /*margin-left: 0.5rem;*/
+    display: block;
+    /*text-shadow: rgb(255, 255, 255) 2px 0px 0px, rgb(255, 255, 255) 1.75517px 0.958851px 0px, rgb(255, 255, 255) 1.0806px 1.68294px 0px, rgb(255, 255, 255) 0.141474px 1.99499px 0px, rgb(255, 255, 255) -0.832294px 1.81859px 0px, rgb(255, 255, 255) -1.60229px 1.19694px 0px, rgb(255, 255, 255) -1.97998px 0.28224px 0px, rgb(255, 255, 255) -1.87291px -0.701566px 0px, rgb(255, 255, 255) -1.30729px -1.5136px 0px, rgb(255, 255, 255) -0.421592px -1.95506px 0px, rgb(255, 255, 255) 0.567324px -1.91785px 0px, rgb(255, 255, 255) 1.41734px -1.41108px 0px, rgb(255, 255, 255) 1.92034px -0.558831px 0px;*/
+    position: relative;
+    z-index: 50;
+}
+.formPart > div {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem;
+}
+.formPart h2 {
+    margin-bottom: 1rem;
+}
+.formPart button {
+    display: flex;
+    width: auto;
+    min-width: 60%;
+    align-items: center;
+    justify-content: center;
+    padding: .75rem;
+    cursor: pointer;
+    background: transparent;    
+    color: white;
+    font-size: 1.75rem;
+    transition: 50ms transform linear;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.15);
+    margin: .25rem auto;
+}
+.formPart button:hover, .formPart button:active {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.formPart button:active {
+    transform: translateY(5px);
+}
+
+.formPart button.buttonFinal {
+    background: #90da3c;
+    border: 0;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    line-height: 1.1;
+}
+.formPart button.buttonFinal:hover {
+    background: #a9eb5e;
+}
+
+.formPart a.buttonFinal {
+    padding: .75rem;
+    background: #90da3c;
+    border: 0;
+    font-size: 1.75rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    line-height: 1.1;
+    text-align: center;
+    color: white;
+    margin: 1rem 0 0;
+}
+.formPart a.buttonFinal:hover {
+    background: #a9eb5e;
+}
+.formPart a.buttonFinal:active {
+    transform: translateY(5px);
+}
+
+.formPart .formBanner {
+    display: block;
+    padding: 1rem;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
+}
+.formPart .formBanner img {
+    display: block;
+    margin: 0 auto;
+    max-height: 50px;
+    height: auto;
+    width: auto;
+}
+
+#thankYou {
+    text-align: center;
+    color: #90da3c;
+    padding: 5rem 2rem 0;
+    position: relative;
+    display: none;
+    flex-direction: column;
+    max-width: 380px;
+    margin: 0 auto 2rem;
+    align-items: center;
+}
+
+#thankYou h2 {
+    font-size: 1.5rem;
+    color: #444;
+}
+
+#thankYou a {
+    text-decoration: underline;
+    color: #4795dd;
+}
+
+#thankYou a:hover {
+    text-decoration: none;
+    color: #2868a5;
+}
+
+#thankYou::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 15px;
+    height: 30px;
+    border-bottom: 6px #90da3c solid;
+    border-right: 6px #90da3c solid;
+    border-radius: 0 0 3px 0;
+    left:50%;
+    top:2rem;
+    margin-left: -7.5px;
+    transform: rotate(45deg);
+}
+
+#thankYou2 {
+    text-align: center;
+    color: #90da3c;
+    padding: 5rem 2rem 0;
+    position: relative;
+    display: none;
+    flex-direction: column;
+    max-width: 380px;
+    margin: 0 auto 2rem;
+    align-items: center;
+}
+
+#thankYou2 h2, #thankYou2 p {
+    color: #444;
+}
+
+#thankYou2 .thankYouLink {
+    opacity: 0;
+}
+
+#thankYou2 .thankYouLink a {
+    pointer-events: none;    
+    text-decoration: underline;
+    color: #4795dd;
+}
+
+#thankYou2 .thankYouLink a:hover {
+    text-decoration: none;
+    color: #2868a5;
+}
+
+#thankYou2 .thankYouCountdown {
+    width: 60px;
+    height: 60px;    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    position: relative;
+}
+
+#thankYou2 .thankYouCountdown span {
+    font-weight: bold;
+    font-size: 2em;
+}
+
+@keyframes rotateCircle {
+    from {transform: scale(0.6) rotate(0);}
+    to {transform: scale(0.6) rotate(360deg);}
+}
+
+#thankYou2 .thankYouCountdown .redirecting-circle svg {
+    transform: scale(0.6);
+    animation-name: rotateCircle;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+#thankYou2 .thankYouCountdown svg {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#thankYou2 .thankYouCountdown svg .countdownCircle {
+    fill:none;
+    stroke:#90DA3C;
+    stroke-width:6;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    stroke-miterlimit:10;
+    stroke-dasharray: 170px;
+    stroke-dashoffset: 170px;
+    transition: 150ms stroke-dashoffset ease-in;
+    /*animation: circleCountdown 3s linear 1 forwards;*/
+}
+
+/*@keyframes circleCountdown {
+
+    0% {
+        stroke-dashoffset: 170px;
+    }
+
+    33% {
+        stroke-dashoffset: 113px;
+    }
+
+    66% {
+        stroke-dashoffset: 58px;
+    }
+
+    100% {
+        stroke-dashoffset: 0px;
+    }
+
+}*/

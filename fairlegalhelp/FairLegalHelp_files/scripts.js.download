@@ -1,0 +1,222 @@
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+
+};
+
+$( document ).ready(function(){
+    
+    var formLoader = $( '#formReg .formLoader' );
+    var formProgressBar = $( '#formProgress .progressBar' );
+    var formProgressNumber = $( '#formProgress .progressBar .progressNumber' );
+
+    $( formLoader ).css('display','none');
+    
+    var formVersion = getUrlParameter('form');
+
+    $( '#lastStepV1, #lastStepV2, #lastStepV3' ).css('display','none');
+
+    if (formVersion == 'v1' || formVersion == undefined) {
+        $( '#lastStepV1' ).css('display','flex');
+        $( '#lastStepV2' ).remove();
+        $( '#lastStepV3' ).remove();
+        $( '#lastStepV4' ).remove();
+    } else if ( formVersion == 'v2' ) {
+        $( '#lastStepV2' ).css('display','flex');
+        $( '#lastStepV1' ).remove();
+        $( '#lastStepV3' ).remove();
+        $( '#lastStepV4' ).remove();
+    } else if ( formVersion == 'v3' ) {
+        $( '#lastStepV3' ).css('display','flex');
+        $( '#lastStepV1' ).remove();
+        $( '#lastStepV2' ).remove();
+        $( '#lastStepV4' ).remove();
+    } else if ( formVersion == 'v4' ) {
+        $( '#lastStepV4' ).css('display','flex');        
+        $( '#lastStepV1' ).remove();
+        $( '#lastStepV2' ).remove();
+        $( '#lastStepV3' ).remove();
+    } else {
+        $( '#lastStepV1' ).css('display','flex');
+        $( '#lastStepV2' ).remove();
+        $( '#lastStepV3' ).remove();
+        $( '#lastStepV4' ).remove();
+    }
+
+    var styleVersion = getUrlParameter('style');
+
+    if (styleVersion == 'v2') {
+        $( 'link[id="style-version"]' ).attr('href','assets/css/style2.css');
+    }
+    
+
+    if (formVersion != 'thankyou' && formVersion != 'thankyou2') {
+        setTimeout(function(){
+            $( '#formReg' ).css('opacity',1);     
+            $( '#thankYou' ).remove();
+            $( '#thankYou2' ).remove();
+        },150)
+    } else if ( formVersion == 'thankyou' ) {
+        setTimeout(function(){
+            $( '#formReg' ).remove();
+            $( '#formProgress' ).remove();
+            $( '#thankYou2' ).remove();
+            $( '#thankYou' ).css( 'display','flex' );
+        },150)
+    } else {
+
+        function startTimer(duration, display) {
+                       
+            var steps = duration;
+            var timer = duration;                                  
+            var dashoffset = 170;
+        
+            var circle = $( '#thankYou2 .thankYouCountdown svg .countdownCircle' ).css('stroke-dashoffset',dashoffset+'px');
+            
+            var interval = setInterval(function () {
+                
+                $( display ).text(timer-1);
+
+                dashoffset = 170 - ( 170 * ( (steps-timer+1) / steps) );
+                
+                $( circle ).css('stroke-dashoffset',dashoffset+'px');
+
+                $( thankyouLines ).each(function( i ) {
+
+                    $( this ).css('display','none');
+
+                    if (i+2==timer) {
+                        $( this ).css('display','block');
+                    }
+
+                }); 
+        
+                if (--timer == 0) {
+
+                    dashoffset = 0;
+                    timer = 0;
+
+                    clearInterval(interval);
+
+                    $( display ).text('');
+
+
+                    $( '#thankYou2 .thankYouLink' ).css(
+                        {                            
+                            'opacity':'1'
+                        }
+                    );  
+
+                    $( '#thankYou2 .thankYouLink a' ).css(
+                        {                            
+                            'pointer-events':'all'
+                        }
+                    );      
+                    
+
+                    
+                    
+                }
+
+    
+            }, 1500);        
+    
+        }
+
+        setTimeout(function(){
+            $( '#formReg' ).remove();
+            $( '#formProgress' ).remove();
+            $( '#thankYou' ).remove();
+            $( '#thankYou2' ).css( 'display','flex' );
+        },150)
+
+        var thankyouLines = $( '.thankYouLine' );
+        $( thankyouLines ).css('display','none');
+        $( thankyouLines ).last().css('display','block');
+
+
+        jQuery(function ($) {
+            startTimer(3, $( '.thankYouCountdown span' ) );
+        });        
+        
+    }
+
+    var fieldsets = $( '#formReg .formPart' );
+    
+    var activeStep = 0;
+
+    $( formProgressBar ).css( 'width', (activeStep+1)/$( fieldsets ).length*100+'%' );
+    $( formProgressNumber ).text( Math.trunc((activeStep+1)/$( fieldsets ).length*100)+'%' );
+
+    $( fieldsets ).each(function(i){
+
+        $( this ).css('z-index',10-i);
+
+        if(i!=0) {
+            $( this ).css('opacity',0);
+        }
+
+    })
+
+    $( '#formReg .formPart button' ).each(function(j){
+
+        $( this ).click(function(e){
+                        
+            if( ( $( this ).attr('id') != 'form-v2-submit' ) && ( $( this ).attr('id') != 'form-v4-submit' )  ) {                
+               e.preventDefault();
+            }
+
+            activeStep++;                        
+
+            if ( activeStep < $( fieldsets ).length ) {
+
+                $( formProgressBar ).css( 'width', (activeStep+1)/$( fieldsets ).length*100+'%' );
+                $( formProgressNumber ).text( Math.trunc((activeStep+1)/$( fieldsets ).length*100)+'%' );
+
+                $( fieldsets[activeStep-1] ).css({
+                    'opacity':0,
+                    'z-index': parseInt($( fieldsets[activeStep-1] ).css('z-index'))-(j+1)
+                });
+
+                var formLoaderTimer = 200;
+
+                setTimeout(function(){
+                    $( formLoader ).css({
+                        'display':'flex',
+                        'opacity':1
+                    });
+                },formLoaderTimer*1)
+
+                setTimeout(function(){
+                    $( formLoader ).addClass('checked');
+                },formLoaderTimer*1.5)
+
+                setTimeout(function(){
+                    $( formLoader ).css({
+                        'opacity':0
+                    });
+                },formLoaderTimer*3.25)
+
+                setTimeout(function(){
+                    $( formLoader ).css({
+                        'display':'none'
+                    });
+                    $( formLoader ).removeClass('checked');
+                },formLoaderTimer*3.75)
+
+                setTimeout(function(){
+                    $( fieldsets[activeStep] ).css({
+                        'opacity':1,
+                        'z-index': parseInt($( fieldsets[activeStep] ).css('z-index'))+(j+1)
+                    });
+                },formLoaderTimer*4)
+
+            }
+        })
+
+    })
+
+})
